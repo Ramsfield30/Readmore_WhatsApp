@@ -1,61 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Readmore Generator by Ramsfield</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="container">
-  <h1>Readmore Generator</h1>
-  <p class="by">by <b>Ramsfield</b></p>
-  <p class="subtitle">Write your message. Put <strong style="color:#e9edef;">readmore</strong> where you want the Read More to show.</p>
-
-  <label for="inputText">Your Message:</label>
-  <textarea id="inputText" placeholder="Hey guys...readmore This is the hidden part!">Hey guys...readmore This is the hidden part!</textarea>
-
-  <button id="generateBtn">Generate & Copy</button>
-  <div class="status" id="statusMsg"></div>
-
-  <div id="manualCopyBox">
-    <label>If auto-copy didn't work, long-press below and copy:</label>
-    <textarea id="outputText" rows="3" readonly></textarea>
-  </div>
-
-  <p class="footer">Made by Ramsfield • For WhatsApp</p>
-</div>
-
-<script>
-  document.getElementById("generateBtn").addEventListener("click", async () => {
-    const input = document.getElementById("inputText").value;
-    const statusMsg = document.getElementById("statusMsg");
-    const manualCopyBox = document.getElementById("manualCopyBox");
-    const outputText = document.getElementById("outputText");
-
-    if (!input.includes("readmore")) {
-      statusMsg.style.color = "#ff6b6b";
-      statusMsg.textContent = "Add the word 'readmore' where you want the break.";
-      manualCopyBox.style.display = "none";
-      return;
-    }
-
-    const more = String.fromCharCode(8206);
-    const readMore = more.repeat(4001);
-    const finalMessage = input.replaceAll('readmore', readMore);
-
-    outputText.value = finalMessage;
-    manualCopyBox.style.display = "block";
-
-    try {
-      await navigator.clipboard.writeText(finalMessage);
-      statusMsg.style.color = "#25d366";
-      statusMsg.textContent = "Copied! Paste it in WhatsApp and send.";
-    } catch (e) {
-      statusMsg.style.color = "orange";
-      statusMsg.textContent = "Copy it manually from the box below.";
-    }
-  });
-</script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Readmore Generator by Ramsfield</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Readmore Generator</h1>
+            <p class="by">by <b>Ramsfield</b></p>
+            <p class="subtitle">
+                Write your message. Put <strong style="color:#e9edef;">readmore</strong> where you want the Read More to show.
+            </p>
+            <label for="inputText">Your Message:</label>
+            <textarea id="inputText" placeholder="Hey guys...readmore This is the hidden part!">Hey guys...readmore This is the hidden part!</textarea>
+            <button id="generateBtn">Generate & Copy</button>
+            <div class="status" id="statusMsg"></div>
+            <div id="manualCopyBox">
+                <label>If auto-copy didn't work, long-press below and copy:</label>
+                <textarea id="outputText" rows="3" readonly></textarea>
+            </div>
+            <p class="footer">Made by Ramsfield • For WhatsApp</p>
+        </div>
+        <script src="script.js"></script>
+    </body>
 </html>
