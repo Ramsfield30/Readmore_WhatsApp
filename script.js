@@ -1,11 +1,8 @@
-const generateBtn = document.getElementById("generateBtn") as HTMLButtonElement;
-const inputEl = document.getElementById("inputText") as HTMLInputElement;
-const statusMsg = document.getElementById("statusMsg") as HTMLElement;
-const manualCopyBox = document.getElementById("manualCopyBox") as HTMLElement;
-const outputText = document.getElementById("outputText") as HTMLInputElement;
-
-generateBtn.addEventListener("click", async (): Promise<void> => {
-  const input: string = inputEl.value;
+document.getElementById("generateBtn").addEventListener("click", async () => {
+  const input = document.getElementById("inputText").value;
+  const statusMsg = document.getElementById("statusMsg");
+  const manualCopyBox = document.getElementById("manualCopyBox");
+  const outputText = document.getElementById("outputText");
 
   if (!input.includes("readmore")) {
     statusMsg.style.color = "#ff6b6b";
@@ -14,9 +11,9 @@ generateBtn.addEventListener("click", async (): Promise<void> => {
     return;
   }
 
-  const more: string = String.fromCharCode(8206);
-  const readMore: string = more.repeat(4001);
-  const finalMessage: string = input.replaceAll("readmore", readMore);
+  const more = String.fromCharCode(8206);
+  const readMore = more.repeat(4001);
+  const finalMessage = input.replaceAll('readmore', readMore);
 
   outputText.value = finalMessage;
   manualCopyBox.style.display = "block";
@@ -29,4 +26,4 @@ generateBtn.addEventListener("click", async (): Promise<void> => {
     statusMsg.style.color = "orange";
     statusMsg.textContent = "Copy it manually from the box below.";
   }
-});
+})
